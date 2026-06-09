@@ -23,7 +23,7 @@ const requestListener = (req, res) => {
         res.writeHead(200, headers);
         res.write(JSON.stringify({
             "status": "success",
-            "data": todos,
+            "data": todos
         }));
         res.end();
     } else if (req.url == "/todos" && req.method == "POST") { //post one todo
@@ -37,11 +37,11 @@ const requestListener = (req, res) => {
                         "title": title,
                         "id": uuidv4()
                     }
-                    todos.push(todo)
+                    todos.push(todo);
                     res.writeHead(200, headers);
                     res.write(JSON.stringify({
                         "status": "success",
-                        "data": todos,
+                        "data": todos
                     }));
                     res.end();
                 } else {
@@ -59,7 +59,7 @@ const requestListener = (req, res) => {
         res.writeHead(200, headers);
         res.write(JSON.stringify({
             "status": "success",
-            "data": todos,
+            "data": todos
         }));
         res.end();
     } else if (req.url.startsWith("/todos/") && req.method == "DELETE") {
@@ -70,12 +70,12 @@ const requestListener = (req, res) => {
             res.writeHead(200, headers);
             res.write(JSON.stringify({
                 "status": "success",
-                "data": todos,
+                "data": todos
             }));
+            res.end();
         } else {
             errHandle(res);
         }
-        res.end();
     } else if (req.url.startsWith("/todos/") && req.method == "PATCH") {
         req.on('end', () => {
             //避免傳入資料有誤當掉
@@ -88,7 +88,7 @@ const requestListener = (req, res) => {
                     res.writeHead(200, headers);
                     res.write(JSON.stringify({
                         "status": "success",
-                        "data": todos,
+                        "data": todos
                     }));
                     res.end();
                 } else {
@@ -111,5 +111,6 @@ const requestListener = (req, res) => {
     }
 
 }
+
 const server = http.createServer(requestListener);
 server.listen(process.env.PORT || 3005);
